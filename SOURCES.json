@@ -1,0 +1,12 @@
+{
+  "2048": {
+    "archive": "https://codeload.github.com/gabrielecirulli/2048/zip/refs/heads/master",
+    "sha256": "44ecf1c5a87256b46239db5c9c9c825cf90bcdda906b67948f4b6943356f5cf1",
+    "retrieved": "2026-11-12"
+  },
+  "dino": {
+    "archive": "https://codeload.github.com/wayou/t-rex-runner/zip/refs/heads/gh-pages",
+    "sha256": "e4b8a9792cc3dd9403b6493990ac9d58cfd06e21d2f14dcca78a6f26d9a01e9a",
+    "retrieved": "2026-11-12"
+  }
+}
