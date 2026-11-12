@@ -8,5 +8,41 @@
     "archive": "https://codeload.github.com/wayou/t-rex-runner/zip/refs/heads/gh-pages",
     "sha256": "e4b8a9792cc3dd9403b6493990ac9d58cfd06e21d2f14dcca78a6f26d9a01e9a",
     "retrieved": "2026-11-12"
+  },
+  "mario": {
+    "repository": "https://github.com/INONONO66/fable-5.1-mario",
+    "commit": "c7acfbf8e1ba9d9eaf5f453b995241526f8e6a11",
+    "license": "MIT (code original)",
+    "retrieved": "2026-11-12"
+  },
+  "dash": {
+    "repository": "https://github.com/anaygoenka/GeometryDash",
+    "commit": "e6dd9f0a972f72a4fc9c581b95374a50fde41075",
+    "license": "MIT",
+    "retrieved": "2026-11-12"
+  },
+  "callisto": {
+    "repository": "https://github.com/codyebberson/js13k-callisto",
+    "commit": "43651f9a6b273b60f3cb382b93334fb8e7cbc348",
+    "license": "MIT",
+    "retrieved": "2026-11-12"
+  },
+  "subway": {
+    "repository": "https://github.com/AdityaJainPansari/Subway_Surfer_WebGL",
+    "commit": "e2521df56668477eae1fcedbb8ee9d417d5b6048",
+    "license": "MIT",
+    "retrieved": "2026-11-12"
+  },
+  "hextris": {
+    "repository": "https://github.com/Hextris/hextris",
+    "commit": "3f4847dc8fd7dab3d1c87e6324b9159d92fbd396",
+    "license": "GPL-3.0-or-later",
+    "retrieved": "2026-11-12"
+  },
+  "tower": {
+    "repository": "https://github.com/iamkun/tower_game",
+    "commit": "c6fa84afe179b661fa71cf7cc8788d0c47ca2875",
+    "license": "MIT",
+    "retrieved": "2026-11-12"
   }
 }

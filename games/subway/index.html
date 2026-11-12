@@ -1,0 +1,40 @@
+<!-- Pearly Arcade: viewport and tactile input added, 2026-11-12. -->
+<!doctype html>
+<html lang="en">
+  <head><meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'">
+    <meta charset="utf-8">
+    <title>WebGL Demo</title>
+    
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;height:100%;overflow:hidden;background:#121a25;color:#fff;font:14px system-ui}#glcanvas{width:100vw!important;height:calc(100dvh - 105px)!important;object-fit:contain;float:none!important}h3{display:none}#score{display:block;position:fixed;top:8px;left:12px;margin:0;background:#111c;padding:8px;border-radius:8px}</style></head>
+
+  <body>
+    <!-- <canvas id="glcanvas" style="width:97vw;height:96vh"></canvas> -->
+    <canvas style="float: left;" id="glcanvas" width=1000vw height=562.5vw ></canvas>
+    <h3 id="score">SCORE : 0</h3>
+    <h3 id="jet">SCORE : 0</h3>
+    <h3 id="jump">SCORE : 0</h3>
+    <h3 id="shield">SCORE : 0</h3>
+    <h3 id="player_speed">SCORE : 0</h3>
+    <h3 id="height">SCORE : 0</h3>
+    <h3 id="police_speed">SCORE : 0</h3>
+
+    <!-- <h1 id="result" style="visibility:hidden" > GAME OVER </h1> -->
+  </body>
+
+  <script src="./jquery-3.3.1.min.js"></script>
+  <script src="./gl-matrix.js"></script>
+  <script src="./key_events.js"></script>
+  <script src="./side_lanes.js"></script>
+  <script src="./ground.js"></script>
+  <script src="./player.js"></script>
+  <script src="./player1.js"></script>
+  <script src="./player2.js"></script>
+  <script src="./walls.js"></script>
+  <script src="./coin.js"></script>
+  <script src="./power_up.js"></script>
+  <script src="./jackpot.js"></script>
+  <script src="./speed_breaker.js"></script>
+  <script src="./barricade.js"></script>
+  <script src="./train.js"></script>
+  <script src="./main.js"></script>
+<script src="../../touch-controls.js" data-layout="runner"></script></html>
