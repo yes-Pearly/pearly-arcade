@@ -26,7 +26,7 @@ function start(){
   panel.hidden=true;loading.hidden=false;
   if(stageObserver){stageObserver.disconnect();stageObserver=null;}
   if(frame)frame.remove();
-  frame=document.createElement('iframe');frame.title=game.title+' — jeu';frame.src=game.path+'?v=20261112-2';
+  frame=document.createElement('iframe');frame.title=game.title+' — jeu';frame.src=game.path+'?v=3&lang=fr';
   frame.setAttribute('allow','fullscreen; autoplay; gamepad');frame.setAttribute('allowfullscreen','');
   frame.addEventListener('load',()=>{loading.hidden=true;reload.disabled=false;try{frame.contentWindow.focus();}catch(_){}});
   frame.addEventListener('error',()=>showError('Le jeu n’a pas pu être chargé. Touche Recharger pour réessayer.'));
@@ -42,7 +42,7 @@ function start(){
 }
 launch.addEventListener('click',start);
 reload.addEventListener('click',start);
-fetch('games.json?v=20261112-2').then(r=>{if(!r.ok)throw Error();return r.json();}).then(games=>{
+fetch('games.json?v=3').then(r=>{if(!r.ok)throw Error();return r.json();}).then(games=>{
   game=games.find(g=>g.id===key);
   if(!game){document.getElementById('title').textContent='Jeu introuvable';document.getElementById('launch-title').textContent='Ce jeu n’est pas disponible.';document.getElementById('launch-desc').textContent='Reviens au catalogue pour choisir un jeu.';return;}
   document.title=game.title+' — Pearly Arcade';
@@ -50,7 +50,7 @@ fetch('games.json?v=20261112-2').then(r=>{if(!r.ok)throw Error();return r.json()
   document.getElementById('game-type').textContent=game.adaptation?'Adaptation amateur · sans publicité':game.tag+' · sans publicité';
   document.getElementById('launch-title').textContent=game.title;
   document.getElementById('launch-desc').textContent=game.desc;
-  document.getElementById('launch-icon').textContent=game.icon;
+  document.getElementById('launch-photo').src=game.thumb;document.getElementById('launch-photo').alt='Capture de '+game.title;
   document.getElementById('launch-caption').textContent=game.orientation==='landscape'?'Paysage conseillé · commandes tactiles':'Écran tactile · aucune installation';
   document.getElementById('hint').textContent=game.hint;
   document.getElementById('author').textContent=game.author+' · '+game.license;

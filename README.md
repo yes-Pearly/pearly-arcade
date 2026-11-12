@@ -2,39 +2,35 @@
 
 **Jouer : https://yes-pearly.github.io/pearly-arcade/**
 
-8 jeux existants hébergés dans ce dépôt, sans publicité, avec un catalogue tactile et un lecteur adapté au mobile.
+31 jeux existants hébergés dans ce dépôt, sans publicité, et 4 courts-métrages libres diffusés depuis Internet Archive.
 
-| Jeu | Version | Source |
-| --- | --- | --- |
-| Mario · World 1-1 | Adaptation amateur | https://github.com/INONONO66/fable-5.1-mario |
-| Geometry Dash · fan | Adaptation amateur | https://github.com/anaygoenka/GeometryDash |
-| Captain Callisto | Jeu libre existant | https://github.com/codyebberson/js13k-callisto |
-| Subway Runner · fan | Adaptation amateur | https://github.com/AdityaJainPansari/Subway_Surfer_WebGL |
-| Hextris | Jeu libre existant | https://github.com/Hextris/hextris |
-| Tower Building | Jeu libre existant | https://github.com/iamkun/tower_game |
-| 2048 | Jeu libre existant | https://github.com/gabrielecirulli/2048 |
-| Dino | Jeu libre existant | https://github.com/wayou/t-rex-runner |
+## Catalogue et iPad
 
-## Mobile
+- 24 jeux MIT de [mashukui/web-games](https://github.com/mashukui/web-games) : mini-golf, basket, Cross Road, Helix Drop, Fruit Slice, Star Defender, Bubble Shooter, Snake, Block Drop, Breakout, Paddle Duel, Ant Flap, Ant Jump, Water Sort, Gem Match, Air Hockey, bowling, tirs au but, Puissance 4, bataille navale, Sokoban, Sudoku, Mahjong Link et Nonogram.
+- Les 7 jeux déjà présents : Mario World 1-1 (amateur), Geometry Dash (fan), Captain Callisto, Hextris, Tower Building, 2048 et Dino.
+- Vraies captures de chaque jeu, optimisées en JPEG ; grille adaptée au portrait et au paysage, recherche, catégories et favoris locaux.
+- Lecteur adapté aux écrans tactiles. Agrandir dispose d’un repli CSS pour iOS. Le moteur de Tower conserve son viewport lors d’une rotation.
+- Sources de jeux reprises telles quelles ; seules les intégrations documentées dans CHANGES-THIRD-PARTY.md sont modifiées.
+- Manifest pour l’ajout à l’écran d’accueil. Connexion nécessaire au chargement.
 
-- Commandes d’au moins 44 px, filtres, recherche et favoris locaux.
-- Lecteur qui s’adapte aux modes portrait et paysage ; mode Agrandir compatible iOS via un repli CSS.
-- Contrôles tactiles ajoutés à Captain Callisto et au port étudiant Subway Runner, avec gestion des appuis simultanés et des annulations.
-- Les moteurs et les règles des jeux restent ceux de leurs auteurs. Les modifications d’intégration sont documentées dans CHANGES-THIRD-PARTY.md.
-- Manifest pour l’ajout à l’écran d’accueil. Connexion nécessaire au chargement ; aucun mode hors ligne promis.
+L’ancienne adaptation étudiante de Subway Runner a été retirée. Les versions officielles de Subway Surfers et Hill Climb Racing ne sont pas incluses : aucune version permettant leur republication autonome sans publicité n’a été obtenue. Même limite pour Drive Mad, Slope IO, Stickman Climb et Moto X3M. Les adaptations Mario et Geometry Dash sont clairement signalées et ne sont pas les versions officielles.
+
+## Cinéma
+
+Big Buck Bunny (10 min), Sintel (15 min), Elephants Dream (11 min) et Tears of Steel (12 min). Films intégraux avec génériques, lecture native en ligne, sans publicité ajoutée. Les langues sont indiquées dans le catalogue. Les vidéos restent hébergées par Internet Archive et peuvent être indisponibles si ce service ne répond pas ou est inaccessible sur le réseau utilisé. Un lien vers la copie autorisée est proposé en cas d’échec.
+
+Blender Foundation et les auteurs conservent leurs droits. Elephants Dream est sous CC BY 2.5 ; les trois autres sous CC BY 3.0. Les sources officielles, copies et attributions figurent dans films.json et credits.html. Les images proviennent des projets officiels Blender Studio ; les films ne sont pas modifiés.
 
 ## Droits et provenance
 
-Les fichiers de licence et README des auteurs sont conservés dans chaque dossier games/. SOURCES.json enregistre les dépôts et commits des nouveaux jeux. Le portail et touch-controls.js sont sous licence MIT ; les jeux conservent chacun leur propre licence. Les sources de la copie Hextris sont publiées ici sous GPL-3.0-or-later.
+Chaque jeu conserve sa licence dans games/. SOURCES.json enregistre les dépôts et commits. Le portail et touch-controls.js sont sous MIT. Hextris et les sources de cette copie restent sous GPL-3.0-or-later. Les captures des jeux sont soumises aux droits de leurs auteurs respectifs.
 
-Mario World 1-1, Geometry Dash fan et Subway Runner fan sont des adaptations amateurs distinctes des versions officielles Nintendo, RobTop et SYBO. Drive Mad, Slope IO, Stickman Climb et Moto X3M ne sont pas inclus : aucune version originale avec des droits adaptés à une republication autonome sans publicité n’a été identifiée.
+Le site ne garantit pas l’accès sur les appareils ou réseaux gérés d’un établissement.
 
-Le site ne garantit pas l’accès sur les appareils ou réseaux gérés d’un établissement. Aucune technique de contournement n’est incluse.
-
-## Publication et développement
+## Développement et publication
 
 GitHub Pages : Settings → Pages → Deploy from a branch → main → / (root).
 
 `python3 -m http.server 8080`
 
-Aucun build ni paquet nécessaire. Les jeux sont chargés uniquement à la demande du joueur.
+Aucun build ni paquet nécessaire. Les jeux et les flux vidéo sont chargés à la demande.

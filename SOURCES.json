@@ -27,12 +27,6 @@
     "license": "MIT",
     "retrieved": "2026-11-12"
   },
-  "subway": {
-    "repository": "https://github.com/AdityaJainPansari/Subway_Surfer_WebGL",
-    "commit": "e2521df56668477eae1fcedbb8ee9d417d5b6048",
-    "license": "MIT",
-    "retrieved": "2026-11-12"
-  },
   "hextris": {
     "repository": "https://github.com/Hextris/hextris",
     "commit": "3f4847dc8fd7dab3d1c87e6324b9159d92fbd396",
@@ -44,5 +38,106 @@
     "commit": "c6fa84afe179b661fa71cf7cc8788d0c47ca2875",
     "license": "MIT",
     "retrieved": "2026-11-12"
-  }
+  },
+  "web-games": {
+    "repository": "https://github.com/mashukui/web-games",
+    "commit": "2770860c6e2b3ab8144a56462d8178fe7e3445c7",
+    "license": "MIT",
+    "games": [
+      "mini-golf",
+      "hoop-shot",
+      "cross-road",
+      "helix-drop",
+      "fruit-slice",
+      "star-defender",
+      "bubble-shooter",
+      "snake",
+      "block-drop",
+      "breakout",
+      "paddle-duel",
+      "ant-flap",
+      "ant-jump",
+      "water-sort",
+      "gem-match",
+      "air-hockey",
+      "bowling",
+      "penalty-kick",
+      "connect-four",
+      "battleship",
+      "sokoban",
+      "sudoku",
+      "mahjong-link",
+      "nonogram"
+    ],
+    "retrieved": "2026-11-12"
+  },
+  "subway_removed": {
+    "reason": "Retrait de l’adaptation étudiante à la demande de l’utilisateur. Aucune copie de la version officielle de SYBO ajoutée."
+  },
+  "films": [
+    {
+      "id": "bunny",
+      "title": "Big Buck Bunny",
+      "kind": "film",
+      "duration": "10 min",
+      "tag": "Animation · sans dialogues",
+      "desc": "Un grand lapin tranquille croise trois voisins particulièrement turbulents.",
+      "poster": "assets/films/bunny.jpg",
+      "url": "https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4",
+      "archive": "https://archive.org/details/BigBuckBunny_328",
+      "source": "https://peach.blender.org/about/",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "credit": "© 2008 Blender Foundation · peach.blender.org",
+      "note": "Court-métrage complet, générique conservé. Diffusé depuis Internet Archive."
+    },
+    {
+      "id": "sintel",
+      "title": "Sintel",
+      "kind": "film",
+      "duration": "15 min",
+      "tag": "Aventure · anglais",
+      "desc": "Une jeune voyageuse part à la recherche du petit dragon qu’elle a recueilli.",
+      "poster": "assets/films/sintel.jpg",
+      "url": "https://archive.org/download/Sintel/sintel-2048-stereo_512kb.mp4",
+      "archive": "https://archive.org/details/Sintel",
+      "source": "https://durian.blender.org/about/",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "credit": "© 2010 Blender Foundation · durian.blender.org",
+      "note": "Court-métrage complet, générique conservé. Diffusé depuis Internet Archive."
+    },
+    {
+      "id": "elephants",
+      "title": "Elephants Dream",
+      "kind": "film",
+      "duration": "11 min",
+      "tag": "Animation · anglais",
+      "desc": "Deux personnages explorent une machine aussi immense qu’étrange.",
+      "poster": "assets/films/elephants.jpg",
+      "url": "https://archive.org/download/ElephantsDream/ed_1024.mp4",
+      "archive": "https://archive.org/details/ElephantsDream",
+      "source": "https://orange.blender.org/blog/creative-commons-license-2/",
+      "license": "CC BY 2.5",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5/",
+      "credit": "© 2006 Blender Foundation / Netherlands Media Art Institute / les auteurs · orange.blender.org",
+      "note": "Court-métrage complet, générique conservé. Diffusé depuis Internet Archive."
+    },
+    {
+      "id": "tears",
+      "title": "Tears of Steel",
+      "kind": "film",
+      "duration": "12 min",
+      "tag": "Science-fiction · anglais",
+      "desc": "Des scientifiques tentent de sauver le monde dans un Amsterdam futuriste.",
+      "poster": "assets/films/tears.jpg",
+      "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
+      "archive": "https://archive.org/details/Tears-of-Steel",
+      "source": "https://mango.blender.org/sharing/",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "credit": "© Blender Foundation · mango.blender.org",
+      "note": "Court-métrage complet, générique conservé. Diffusé depuis Internet Archive."
+    }
+  ]
 }
