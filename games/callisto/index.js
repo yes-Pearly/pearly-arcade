@@ -1979,7 +1979,7 @@ function drawShadowText(str, x, y, fillColor = OVERLAY_WHITE) {
  */
 function setFontSize(size, style = '') {
   // overlayCtx.font = size + 'px Verdana';
-  overlayCtx.font = `bold ${style} ${size}px Comic Sans MS`;
+  overlayCtx.font = `600 ${size}px -apple-system, system-ui, sans-serif`;
 }
 
 /**
@@ -4606,7 +4606,7 @@ function drawHud() {
   if (gameState === GameState.CREDITS) {
     setTextAlign(ALIGN_CENTER);
     setFontSize(24, 'italic');
-    drawShadowText('THE ADVENTURES OF', CENTER_X, 60);
+    drawShadowText('LES AVENTURES DE', CENTER_X, 60);
     setFontSize(64, 'italic');
     drawShadowText('CAPTAIN CALLISTO', CENTER_X, 120);
 
@@ -4626,6 +4626,7 @@ function drawHud() {
 
   setFontSize(24);
 
+  if(matchMedia('(pointer:coarse),(max-width:1100px)').matches)return;
   setTextAlign(ALIGN_CENTER);
   drawKeyIcon('W', WIDTH - 445, HEIGHT - 370);
   drawKeyIcon('A', WIDTH - 490, HEIGHT - 325);
@@ -4679,22 +4680,22 @@ const introText = [,
   [
     [
       // Intro Story 1
-      'OUR HERO, CAPTAIN CALLISTO, BLASTS THROUGH SPACE',
-      'SEEKING ADVENTURE',
+      'LE CAPITAINE CALLISTO TRAVERSE L’ESPACE',
+      'EN QUÊTE D’AVENTURES',
     ],
   ],
   [
     [
       // Intro Story 2
-      'APPROACHING THE ZETA AIR FORTRESS',
-      'BEWARE: SENSORS SHOW SIGNS OF LIFE',
+      'LA FORTERESSE ZETA SE RAPPROCHE',
+      'ATTENTION : DES SIGNES DE VIE SONT DÉTECTÉS',
     ],
   ],
   [,
     [
       // Level 1
-      'COLLECT ALL TREASURE AND',
-      'REACH THE TRANSPORTER TO PROCEED',
+      'COLLECTE TOUS LES TRÉSORS ET',
+      'REJOINS LE TRANSPORTEUR POUR CONTINUER',
     ],
     [
       // Level 2
@@ -4895,7 +4896,7 @@ const drawMenu = () => {
   if (gameState <= GameState.INTRO_STORY2 || menu === mainMenu || menu == levelsMenu) {
     setTextAlign(ALIGN_CENTER);
     setFontSize(24, 'italic');
-    drawShadowText('THE ADVENTURES OF', CENTER_X, 60);
+    drawShadowText('LES AVENTURES DE', CENTER_X, 60);
     setFontSize(64, 'italic');
     drawShadowText('CAPTAIN CALLISTO', CENTER_X, 120);
   }
@@ -4982,7 +4983,7 @@ const drawMenu = () => {
     if (gameState === GameState.WAITING_FOR_FIRST_CLICK) {
       setTextAlign(ALIGN_CENTER);
       setFontSize(32, 'italic');
-      drawShadowText('PRESS ANY KEY TO CONTINUE', CENTER_X, HEIGHT - 90);
+      drawShadowText('TOUCHE CONTINUER POUR AVANCER', CENTER_X, HEIGHT - 90);
     } else if (gameState === GameState.AFTER_LEVEL) {
       setTextAlign(ALIGN_CENTER);
       setFontSize(64, 'italic');
@@ -4990,7 +4991,7 @@ const drawMenu = () => {
       setFontSize(48, 'italic');
       drawShadowText(gameTime.toFixed(1) + ' sec', CENTER_X, 220);
       setFontSize(32, 'italic');
-      drawShadowText('PRESS ANY KEY TO CONTINUE', CENTER_X, HEIGHT - 90);
+      drawShadowText('TOUCHE CONTINUER POUR AVANCER', CENTER_X, HEIGHT - 90);
     } else {
       drawRectangle(20, HEIGHT - 180, 900, 160, '#cb6', OVERLAY_BLACK);
 
@@ -5010,7 +5011,7 @@ const drawMenu = () => {
       drawText(introText[gameState][index][1], 30, HEIGHT - 122);
 
       setFontSize(20, 'italic');
-      drawText('PRESS ANY KEY TO CONTINUE', 30, HEIGHT - 53);
+      drawText('TOUCHE CONTINUER POUR AVANCER', 30, HEIGHT - 53);
     }
   }
 };
@@ -6022,3 +6023,6 @@ function updateEntity(entity) {
 
 const bestTimesStr = localStorage['callisto-times'];
 const bestTimes = bestTimesStr ? JSON.parse(bestTimesStr) : [];
+
+// Pearly Arcade: launch directly into level 1 after the portal's instructions.
+window.pearlyStartGame=()=>{setLevel(1);initGame();gameState=GameState.PLAYING;gameTime=0;setMenu(null);resetKeys();zzfxX.resume();if(!localStorage['music-off'])playMusic(milkyWaySong,true)};

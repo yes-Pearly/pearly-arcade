@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head><meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'">
+<html lang="fr">
+<head><script src="../../game-kit.js?v=6" data-game="2048"></script><meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'">
   <meta charset="utf-8">
   <title>2048</title>
 
-  <link href="style/main.css" rel="stylesheet" type="text/css">
+  <link href="style/main.css?v=6" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
   <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
@@ -15,7 +15,7 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
-</head>
+<link rel="stylesheet" href="../../game-kit.css?v=6"><style>:root{--accent:#acc5ff}</style></head>
 <body>
   <div class="container">
     <div class="heading">
@@ -27,16 +27,16 @@
     </div>
 
     <div class="above-game">
-      <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
-      <a class="restart-button">New Game</a>
+      <p class="game-intro">Glisse pour fusionner les nombres. Objectif : <strong>2048.</strong></p>
+      <a class="restart-button">Nouvelle partie</a>
     </div>
 
     <div class="game-container">
       <div class="game-message">
         <p></p>
         <div class="lower">
-	        <a class="keep-playing-button">Keep going</a>
-          <a class="retry-button">Try again</a>
+	        <a class="keep-playing-button">Continuer</a>
+          <a class="retry-button">Rejouer</a>
         </div>
       </div>
 
@@ -72,27 +72,27 @@
       </div>
     </div>
 
-    <p class="game-explanation">
+    <p class="game-explanation" hidden>
       <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
     </p>
-    <hr>
-    <p>
-    <strong class="important">About:</strong> This is an independent copy of the original open-source 2048 by Gabriele Cirulli. <a href="LICENSE.txt">MIT license</a>.
-    <hr>
-    <p>
+    <hr hidden>
+    <p class="legacy-credit">
+    <strong class="important">À propos :</strong> This is an independent copy of the original open-source 2048 by Gabriele Cirulli. <a href="LICENSE.txt">MIT license</a>.
+    <hr hidden>
+    <p class="legacy-credit">
     Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
     </p>
   </div>
 
-  <script src="js/bind_polyfill.js"></script>
-  <script src="js/classlist_polyfill.js"></script>
-  <script src="js/animframe_polyfill.js"></script>
-  <script src="js/keyboard_input_manager.js"></script>
-  <script src="js/html_actuator.js"></script>
-  <script src="js/grid.js"></script>
-  <script src="js/tile.js"></script>
-  <script src="js/local_storage_manager.js"></script>
-  <script src="js/game_manager.js"></script>
-  <script src="js/application.js"></script>
+  <script src="js/bind_polyfill.js?v=6"></script>
+  <script src="js/classlist_polyfill.js?v=6"></script>
+  <script src="js/animframe_polyfill.js?v=6"></script>
+  <script src="js/keyboard_input_manager.js?v=6"></script>
+  <script src="js/html_actuator.js?v=6"></script>
+  <script src="js/grid.js?v=6"></script>
+  <script src="js/tile.js?v=6"></script>
+  <script src="js/local_storage_manager.js?v=6"></script>
+  <script src="js/game_manager.js?v=6"></script>
+  <script src="js/application.js?v=6"></script>
 </body>
 </html>

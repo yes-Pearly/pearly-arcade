@@ -53,7 +53,7 @@ function drawShadowText(str, x, y, fillColor = OVERLAY_WHITE) {
  */
 function setFontSize(size, style = '') {
   // overlayCtx.font = size + 'px Verdana';
-  overlayCtx.font = `bold ${style} ${size}px Comic Sans MS`;
+  overlayCtx.font = `600 ${size}px -apple-system, system-ui, sans-serif`;
 }
 
 /**

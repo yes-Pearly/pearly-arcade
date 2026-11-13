@@ -1,7 +1,7 @@
 <!-- Pearly Arcade: optional ads and analytics removed; 2026-11-12. GPL-3.0-or-later. -->
 <!DOCTYPE html>
 <html lang='en'>
-	<head><meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'">
+	<head><script src="../../game-kit.js?v=6" data-game="hextris"></script><meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'">
 		<title>Hextris</title>
 		<meta name="description" content="An addictive puzzle game inspired by Tetris.">
 		<link rel="manifest" href="manifest.webmanifest">
@@ -43,31 +43,31 @@
 		<meta property="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=com.hextris.hextris">
 		<link rel="icon" type="image/png" href="favicon.ico">
 		
-		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="style/style.css">
-		<script type='text/javascript' src="vendor/hammer.min.js"></script>
-		<script type='text/javascript' src="vendor/js.cookie.js"></script>
-		<script type='text/javascript' src="vendor/jsonfn.min.js"></script>
-		<script type='text/javascript' src="vendor/keypress.min.js"></script>
-		<script type='text/javascript' src="vendor/jquery.js"></script>
-		<script type='text/javascript' src="js/save-state.js"></script>
-		<script type='text/javascript' src="js/view.js"></script>
-		<script type='text/javascript' src="js/wavegen.js"></script>
-		<script type='text/javascript' src="js/math.js"></script>
-		<script type='text/javascript' src="js/Block.js"></script>
-		<script type='text/javascript' src="js/Hex.js"></script>
-		<script type='text/javascript' src="js/Text.js"></script>
-		<script type='text/javascript' src="js/comboTimer.js"></script>
-		<script type='text/javascript' src="js/checking.js"></script>
+		<link rel="stylesheet" href="style/fa/css/font-awesome.min.css?v=6">
+		<link rel="stylesheet" type="text/css" href="style/style.css?v=6">
+		<script type='text/javascript' src="vendor/hammer.min.js?v=6"></script>
+		<script type='text/javascript' src="vendor/js.cookie.js?v=6"></script>
+		<script type='text/javascript' src="vendor/jsonfn.min.js?v=6"></script>
+		<script type='text/javascript' src="vendor/keypress.min.js?v=6"></script>
+		<script type='text/javascript' src="vendor/jquery.js?v=6"></script>
+		<script type='text/javascript' src="js/save-state.js?v=6"></script>
+		<script type='text/javascript' src="js/view.js?v=6"></script>
+		<script type='text/javascript' src="js/wavegen.js?v=6"></script>
+		<script type='text/javascript' src="js/math.js?v=6"></script>
+		<script type='text/javascript' src="js/Block.js?v=6"></script>
+		<script type='text/javascript' src="js/Hex.js?v=6"></script>
+		<script type='text/javascript' src="js/Text.js?v=6"></script>
+		<script type='text/javascript' src="js/comboTimer.js?v=6"></script>
+		<script type='text/javascript' src="js/checking.js?v=6"></script>
 		<script type='text/javascript' src='js/update.js'></script>
 		<script type='text/javascript' src='js/render.js'></script>
-		<script type='text/javascript' src="js/input.js"></script>
-		<script type='text/javascript' src="js/main.js"></script>
-		<script type='text/javascript' src="js/initialization.js"></script>
-		<script src="vendor/sweet-alert.min.js"></script>
-		<link rel="stylesheet" href="style/rrssb.css"/>
+		<script type='text/javascript' src="js/input.js?v=6"></script>
+		<script type='text/javascript' src="js/main.js?v=6"></script>
+		<script type='text/javascript' src="js/initialization.js?v=6.1"></script>
+		<script src="vendor/sweet-alert.min.js?v=6"></script>
+		<link rel="stylesheet" href="style/rrssb.css?v=6"/>
 		
-	<style>#buttonCont,#socialShare,#badges,.rrssb-buttons{display:none!important}html,body{overscroll-behavior:none;touch-action:none}</style></head>
+	<style>#buttonCont,#socialShare,#badges,.rrssb-buttons{display:none!important}html,body{overscroll-behavior:none;touch-action:none}</style><link rel="stylesheet" href="../../game-kit.css?v=6"><style>:root{--accent:#acc5ff}</style></head>
 	<body>
 		<canvas id="canvas"></canvas>
 		<div id="overlay" class="faded overlay"></div>
@@ -79,16 +79,16 @@
 		<div class="faded overlay"></div>
 		<img id="pauseBtn" src="./images/btn_pause.svg"/>
 		<img id='restartBtn' src="./images/btn_restart.svg"/>
-		<div id='HIGHSCORE'>HIGH SCORE</div>
+		<div id='HIGHSCORE'>RECORD</div>
 		
 		<div id='highScoreInGameText'>
-			<div id='highScoreInGameTextHeader'>HIGH SCORE</div><div id='currentHighScore'>10292</div>
+			<div id='highScoreInGameTextHeader'>RECORD</div><div id='currentHighScore'>10292</div>
 		</div>
 		<div id="gameoverscreen">
 			<div id='container'>
 				<div id='gameOverBox' class='GOTitle'>GAME OVER</div>
 				<div id='cScore'>1843</div>
-				<div id='highScoresTitle' class='GOTitle'>HIGH SCORES</div>
+				<div id='highScoresTitle' class='GOTitle'>RECORDS</div>
 				<div class='score'><span class='scoreNum'>1.</span> <div id="1place" style="display:inline;">0</div></div>
 				<div class='score'><span class='scoreNum'>2.</span> <div id="2place" style="display:inline;">0</div></div>
 				<div class='score'><span class='scoreNum'>3.</span> <div id="3place" style="display:inline;">0</div></div>

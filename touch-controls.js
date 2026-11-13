@@ -10,9 +10,9 @@
   const style = document.createElement('style');
   style.textContent = `
     .pearly-pad{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none;font:12px system-ui;color:white;user-select:none;-webkit-user-select:none}
-    @media(pointer:coarse),(max-width:900px){.pearly-pad{display:block}}
-    .pearly-pad button{pointer-events:auto;touch-action:none;min-width:52px;min-height:50px;border:1px solid #ffffff88;background:#152236dc;color:white;border-radius:13px;font:600 13px system-ui;box-shadow:0 3px 10px #0004;-webkit-tap-highlight-color:transparent}
-    .pearly-pad button.active{background:#f16a3b;color:white;transform:scale(.96)}
+    @media(pointer:coarse),(max-width:1100px){.pearly-pad{display:block}}
+    .pearly-pad button{pointer-events:auto;touch-action:none;min-width:52px;min-height:50px;border:1px solid #ffffff88;background:#172b47e8;color:white;border-radius:17px;font:600 13px system-ui;box-shadow:0 3px 10px #0004;-webkit-tap-highlight-color:transparent}
+    .pearly-pad button.active{background:#aec7ff;color:#15243a;transform:scale(.96)}
     .pearly-dpad{position:absolute;bottom:max(10px,env(safe-area-inset-bottom));left:max(10px,env(safe-area-inset-left));display:grid;grid-template-columns:repeat(3,52px);gap:5px}
     .pearly-actions{position:absolute;right:max(10px,env(safe-area-inset-right));bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:8px}
     .pearly-actions button{min-width:65px;min-height:60px}.pearly-menu{position:absolute;top:max(8px,env(safe-area-inset-top));right:10px;display:flex;gap:6px}.pearly-menu button{min-height:40px;min-width:60px;font-size:11px}
@@ -22,7 +22,7 @@
   const pad = document.createElement('div');
   pad.className = 'pearly-pad'; pad.setAttribute('aria-label','Commandes tactiles');
   pad.innerHTML = layout === 'callisto'
-    ? '<div class="pearly-dpad"><span></span><button data-key="up" aria-label="Avancer">↑</button><span></span><button data-key="left" aria-label="Gauche">←</button><button data-key="down" aria-label="Reculer">↓</button><button data-key="right" aria-label="Droite">→</button></div><div class="pearly-actions"><button data-key="jet">Jet</button><button data-key="jump">Saut</button></div><div class="pearly-menu"><button data-key="start">Entrée</button><button data-key="pause">Menu</button></div>'
+    ? '<div class="pearly-dpad"><span></span><button data-key="up" aria-label="Avancer">↑</button><span></span><button data-key="left" aria-label="Gauche">←</button><button data-key="down" aria-label="Reculer">↓</button><button data-key="right" aria-label="Droite">→</button></div><div class="pearly-actions"><button data-key="jet">Jet</button><button data-key="jump">Saut</button></div><div class="pearly-menu"><button data-key="start">Continuer</button><button data-key="pause">Pause</button></div>'
     : '<div class="pearly-dpad"><button data-key="left" aria-label="Voie gauche">←</button><button data-key="down" aria-label="Glisser">↓</button><button data-key="right" aria-label="Voie droite">→</button></div><div class="pearly-actions"><button data-key="jump">Saut</button></div>';
   document.body.appendChild(pad);
   const held = new Map();

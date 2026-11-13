@@ -139,5 +139,19 @@
       "credit": "© Blender Foundation · mango.blender.org",
       "note": "Court-métrage complet, générique conservé. Diffusé depuis Internet Archive."
     }
-  ]
+  ],
+  "drive-mad": {
+    "url": "https://ducky443747.github.io/games/DriveMad/",
+    "author": "Martin Magni / Fancade",
+    "integration": "iframe distante, URL fournie par l’utilisateur ; aucun runtime/data copié",
+    "license": "Jeu propriétaire, aucune relicence par ce projet",
+    "retrieved": "2026-11-13"
+  },
+  "integration_v6": {
+    "date": "2026-11-13",
+    "local_games": 31,
+    "external_games": 1,
+    "changes": "CHANGES-THIRD-PARTY.md",
+    "screenshots": "Captures réelles dans le lecteur et les jeux"
+  }
 }

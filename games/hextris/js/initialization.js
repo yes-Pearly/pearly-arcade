@@ -48,7 +48,7 @@ function initialize(a) {
 	})();
 	$('#clickToExit').bind('click', toggleDevTools);
 	window.settings;
-	if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+	if (matchMedia('(pointer:coarse)').matches || navigator.maxTouchPoints > 1 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         $('.rrssb-email').remove();
 		settings = {
 			os: "other",
@@ -137,6 +137,8 @@ function initialize(a) {
 	if (a != 1) {
 		window.canRestart = 1;
 		window.onblur = function(e) {
+            // The embedded player owns pause state; avoid a second hidden pause.
+            if (parent !== window && window.PearlyGame) return;
 			if (gameState == 1) {
 				pause();
 			}

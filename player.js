@@ -1,64 +1,27 @@
-const key=new URLSearchParams(location.search).get('game');
-const shell=document.getElementById('shell');
-const layout=document.getElementById('play-layout');
-const full=document.getElementById('fullscreen');
-const launch=document.getElementById('launch');
-const reload=document.getElementById('reload');
-const panel=document.getElementById('launch-panel');
-const loading=document.getElementById('loading');
-let frame=null,game=null,focus=false,stageObserver=null;
-function showError(text){const e=document.getElementById('error');e.textContent=text;e.hidden=false;loading.hidden=true;}
-function updateFocus(value){focus=value;document.body.classList.toggle('focus-mode',value);full.setAttribute('aria-pressed',String(value));full.setAttribute('aria-label',value?'Réduire le jeu':'Agrandir le jeu');full.querySelector('span').textContent=value?'Réduire':'Agrandir';}
-full.addEventListener('click',async()=>{
-  if(focus){if(document.fullscreenElement){try{await document.exitFullscreen();}catch(_){}}updateFocus(false);return;}
-  updateFocus(true);
-  if(layout.requestFullscreen){try{await layout.requestFullscreen();}catch(_){}}
-});
-document.addEventListener('fullscreenchange',()=>updateFocus(Boolean(document.fullscreenElement)));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.fullscreenElement)updateFocus(false);});
-function start(){
-  if(!game)return;
-  if(game.id==='callisto'){
-    const test=document.createElement('canvas');
-    if(!test.getContext('webgl2')){showError('Ce navigateur ne prend pas en charge WebGL 2, nécessaire pour Captain Callisto. Les autres jeux restent disponibles.');return;}
-  }
-  document.getElementById('error').hidden=true;
-  panel.hidden=true;loading.hidden=false;
-  if(stageObserver){stageObserver.disconnect();stageObserver=null;}
-  if(frame)frame.remove();
-  frame=document.createElement('iframe');frame.title=game.title+' — jeu';frame.src=game.path+'?v=3&lang=fr';
-  frame.setAttribute('allow','fullscreen; autoplay; gamepad');frame.setAttribute('allowfullscreen','');
-  frame.addEventListener('load',()=>{loading.hidden=true;reload.disabled=false;try{frame.contentWindow.focus();}catch(_){}});
-  frame.addEventListener('error',()=>showError('Le jeu n’a pas pu être chargé. Touche Recharger pour réessayer.'));
-  shell.appendChild(frame);
-  if(game.id==='tower'){
-    frame.style.cssText='position:absolute;left:50%;top:50%;width:360px;height:640px;max-width:none;transform-origin:center;';
-    const fit=()=>{const scale=Math.min(shell.clientWidth/360,shell.clientHeight/640);frame.style.transform='translate(-50%,-50%) scale('+scale+')';};
-    stageObserver=new ResizeObserver(fit);stageObserver.observe(shell);fit();
-  }
-  window.scrollTo(0,0);
-  try{localStorage.setItem('pearly-last',game.id);}catch(_){}
-  if(matchMedia('(pointer:coarse),(max-width:700px),(max-height:500px)').matches)document.getElementById('help').open=false;
+const $=id=>document.getElementById(id),key=new URLSearchParams(location.search).get('game');
+const shell=$('shell'),layout=$('play-layout');let frame=null,game=null,focus=false,paused=false,muted=false,started=false,ready=false,observer=null,loadTimer=null;
+try{muted=localStorage.getItem('pearly-muted')==='true'}catch(_){}
+const send=(type,value)=>{if(frame)frame.contentWindow.postMessage({type:'pearly:'+type,value},location.origin)};
+function error(text){$('error').textContent=text;$('error').hidden=false;$('loading').hidden=true}
+function updateMute(){ $('sound').setAttribute('aria-pressed',String(muted));$('sound').setAttribute('aria-label',muted?'Activer le son':'Couper le son');$('sound').querySelector('.label').textContent=muted?'Muet':'Son';try{localStorage.setItem('pearly-muted',String(muted))}catch(_){}}
+function setPause(value,notify=true){if(!started||!ready||game.external)return;paused=Boolean(value);frame.inert=paused;frame.tabIndex=paused?-1:0;$('pause').setAttribute('aria-pressed',String(paused));$('pause').setAttribute('aria-label',paused?'Reprendre la partie':'Mettre en pause');$('pause').querySelector('.label').textContent=paused?'Reprendre':'Pause';$('pause-panel').hidden=!paused;if(notify)send('pause',paused);if(!paused)frame?.contentWindow.focus();else if($('help').hidden&&$('restart-panel').hidden)$('resume').focus()}
+function help(value){$('help').hidden=!value;$('info').setAttribute('aria-expanded',String(value));if(value&&started&&!game.external)setPause(true);if(value)$('close-help').focus()}
+function updateFocus(value){focus=value;document.body.classList.toggle('focus-mode',value);$('fullscreen').setAttribute('aria-pressed',String(value));$('fullscreen').querySelector('.label').textContent=value?'Réduire':'Agrandir'}
+$('fullscreen').onclick=async()=>{if(focus){if(document.fullscreenElement)try{await document.exitFullscreen()}catch(_){}updateFocus(false)}else{updateFocus(true);try{await layout.requestFullscreen?.()}catch(_){}}};
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement)updateFocus(false)});
+function readyFrame(){if(ready)return;clearTimeout(loadTimer);ready=true;$('loading').hidden=true;$('pause').disabled=Boolean(game.external);if(!game.external){send('mute',muted);send('start')}frame.contentWindow.focus();}
+function start(){if(!game)return;if(game.id==='callisto'&&!document.createElement('canvas').getContext('webgl2')){error('Captain Callisto demande WebGL 2. Essaie un autre jeu dans ce navigateur.');return}
+ started=true;ready=false;paused=false;$('pause').disabled=true;$('pause').setAttribute('aria-pressed','false');$('pause').querySelector('.label').textContent='Pause';$('pause-panel').hidden=true;$('restart-panel').hidden=true;$('help').hidden=true;$('launch-panel').hidden=true;$('loading').hidden=false;$('error').hidden=true;
+ observer?.disconnect();frame?.remove();clearTimeout(loadTimer);frame=document.createElement('iframe');frame.title=game.title+' — jeu';frame.width=String(shell.clientWidth);frame.height=String(shell.clientHeight);frame.src=game.external?game.path:game.path+'?v=6&lang=fr';frame.allow=game.external?'fullscreen; gamepad':'fullscreen; autoplay; gamepad';frame.allowFullscreen=true;if(game.external){frame.setAttribute('sandbox','allow-scripts allow-same-origin allow-pointer-lock');frame.referrerPolicy='no-referrer';frame.addEventListener('load',readyFrame)}shell.prepend(frame);frame.addEventListener('error',()=>error('Le jeu ne répond pas. Ouvre l’aide pour recommencer.'));
+ loadTimer=setTimeout(()=>error('Le chargement prend plus de temps que prévu. Vérifie ta connexion puis ouvre l’aide pour recommencer.'),25000);
+ if(game.id==='tower'){frame.style.cssText='position:absolute;left:50%;top:50%;width:360px;height:640px;max-width:none;transform-origin:center;';const fit=()=>{const scale=Math.min(shell.clientWidth/360,shell.clientHeight/640);frame.style.transform=`translate(-50%,-50%) scale(${scale})`};observer=new ResizeObserver(fit);observer.observe(shell);fit()}
+ if(game.id!=='tower'){const fit=()=>{frame.style.width=shell.clientWidth+'px';frame.style.height=shell.clientHeight+'px';frame.width=String(shell.clientWidth);frame.height=String(shell.clientHeight)};observer=new ResizeObserver(fit);observer.observe(shell);fit()}try{localStorage.setItem('pearly-last',game.id)}catch(_){}orientation();
 }
-launch.addEventListener('click',start);
-reload.addEventListener('click',start);
-fetch('games.json?v=3').then(r=>{if(!r.ok)throw Error();return r.json();}).then(games=>{
-  game=games.find(g=>g.id===key);
-  if(!game){document.getElementById('title').textContent='Jeu introuvable';document.getElementById('launch-title').textContent='Ce jeu n’est pas disponible.';document.getElementById('launch-desc').textContent='Reviens au catalogue pour choisir un jeu.';return;}
-  document.title=game.title+' — Pearly Arcade';
-  document.getElementById('title').textContent=game.title;
-  document.getElementById('game-type').textContent=game.adaptation?'Adaptation amateur · sans publicité':game.tag+' · sans publicité';
-  document.getElementById('launch-title').textContent=game.title;
-  document.getElementById('launch-desc').textContent=game.desc;
-  document.getElementById('launch-photo').src=game.thumb;document.getElementById('launch-photo').alt='Capture de '+game.title;
-  document.getElementById('launch-caption').textContent=game.orientation==='landscape'?'Paysage conseillé · commandes tactiles':'Écran tactile · aucune installation';
-  document.getElementById('hint').textContent=game.hint;
-  document.getElementById('author').textContent=game.author+' · '+game.license;
-  document.getElementById('source').href=game.source;
-  document.getElementById('license').href=game.path+game.licensePath;
-  const direct=document.getElementById('direct');direct.href=game.path;direct.hidden=false;
-  document.getElementById('orientation').hidden=game.orientation!=='landscape';
-  shell.dataset.orientation=game.orientation;
-  shell.dataset.game=game.id;
-  launch.hidden=false;
-}).catch(()=>{document.getElementById('launch-title').textContent='Chargement impossible';showError('Vérifie ta connexion puis recharge cette page.');});
+window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==frame?.contentWindow||e.data?.id!==game?.id)return;const m=e.data;if(m.type==='pearly:ready')readyFrame();if(m.type==='pearly:paused')setPause(m.paused,false);if(m.type==='pearly:muted'){muted=m.muted;updateMute()}});
+$('launch').onclick=start;$('pause').onclick=()=>setPause(!paused);$('resume').onclick=()=>setPause(false);$('sound').onclick=()=>{muted=!muted;updateMute();send('mute',muted);if(started&&!paused)frame?.contentWindow.focus()};
+$('info').onclick=()=>help($('help').hidden);$('close-help').onclick=()=>help(false);$('foot-help').onclick=()=>help(true);
+function confirmRestart(){help(false);setPause(true);$('restart-panel').hidden=false;$('confirm-restart').focus()}
+$('restart').onclick=confirmRestart;$('help-restart').onclick=confirmRestart;$('confirm-restart').onclick=start;$('cancel-restart').onclick=()=>{$('restart-panel').hidden=true;if(game.external)frame?.contentWindow.focus();else $('resume').focus()};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)setPause(true)});document.addEventListener('keydown',e=>{if(e.code==='Escape'){if(!$('help').hidden)help(false);else if(started)setPause(!paused)}});
+function orientation(){if(game)$('orientation').hidden=!(game.orientation==='landscape'&&innerHeight>innerWidth&&started&&!paused)}window.addEventListener('resize',orientation);
+updateMute();fetch('games.json?v=6').then(r=>{if(!r.ok)throw Error();return r.json()}).then(games=>{game=games.find(g=>g.id===key);if(!game)throw Error('unknown');document.title=game.title+' — Pearly Arcade';$('title').textContent=game.title;$('game-type').textContent=game.adaptation?'Adaptation amateur · sans publicité':game.tag+' · sans publicité';$('launch-title').textContent=game.title;$('launch-desc').textContent=game.desc;$('launch-hint').textContent=game.hint;$('hint').textContent=game.hint;$('foot-hint').textContent=game.hint;$('launch-photo').src=$('launch-backdrop').src=game.thumb;$('launch-photo').alt='Capture de '+game.title;$('launch-caption').textContent=game.tag.toUpperCase()+' · '+(game.orientation==='landscape'?'PAYSAGE CONSEILLÉ':'COMMANDES TACTILES');$('orientation-label').textContent=game.orientation==='landscape'?'Paysage conseillé':'Portrait ou paysage';$('author').textContent=game.author+' · '+game.license;$('source').href=game.source;$('license').href=game.external?'https://www.fancade.com/wiki/Drive_Mad':game.path+game.licensePath;$('license').textContent=game.external?'À propos du jeu ↗':'Licence ↗';$('direct').href=game.path;$('launch').disabled=false;shell.dataset.game=game.id;if(game.external){$('pause').hidden=true;$('sound').hidden=true;$('help').querySelector('dl').innerHTML='<dt>Pause et son</dt><dd>Menu intégré de Drive Mad</dd><dt>Hébergement</dt><dd>Site indiqué par toi</dd>';$('launch-panel').querySelector('.caption').textContent='Drive Mad reste hébergé à l’adresse que tu as fournie.';$('game-type').textContent='Martin Magni · intégration externe'}orientation()}).catch(()=>{$('launch-title').textContent='Jeu indisponible';error('Ce jeu n’a pas pu être trouvé. Reviens au catalogue pour choisir une partie.')});

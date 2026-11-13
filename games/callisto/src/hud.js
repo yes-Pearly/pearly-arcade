@@ -6,7 +6,7 @@ function drawHud() {
   if (gameState === GameState.CREDITS) {
     setTextAlign(ALIGN_CENTER);
     setFontSize(24, 'italic');
-    drawShadowText('THE ADVENTURES OF', CENTER_X, 60);
+    drawShadowText('LES AVENTURES DE', CENTER_X, 60);
     setFontSize(64, 'italic');
     drawShadowText('CAPTAIN CALLISTO', CENTER_X, 120);
 
@@ -26,6 +26,7 @@ function drawHud() {
 
   setFontSize(24);
 
+  if(matchMedia('(pointer:coarse),(max-width:1100px)').matches)return;
   setTextAlign(ALIGN_CENTER);
   drawKeyIcon('W', WIDTH - 445, HEIGHT - 370);
   drawKeyIcon('A', WIDTH - 490, HEIGHT - 325);

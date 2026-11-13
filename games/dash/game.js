@@ -13,8 +13,9 @@ const GROUND_RATIO = 0.78;
 const CEIL_Y = 40;
 
 function resize() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
+  W = 960; H = 540;
+  const dpr=Math.min(devicePixelRatio||1,2);canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  const scale=Math.min(innerWidth/W,innerHeight/H);canvas.style.width=(W*scale)+'px';canvas.style.height=(H*scale)+'px';
   groundY = Math.floor(H * GROUND_RATIO);
 }
 resize();
@@ -223,13 +224,13 @@ function tapHandler(x, y) {
   iDown();
 }
 
-canvas.addEventListener("mousedown", (e) => tapHandler(e.clientX, e.clientY));
+canvas.addEventListener("mousedown", (e) => tapHandler((e.clientX-canvas.getBoundingClientRect().left)*W/canvas.getBoundingClientRect().width, (e.clientY-canvas.getBoundingClientRect().top)*H/canvas.getBoundingClientRect().height));
 canvas.addEventListener("mouseup", iUp);
 canvas.addEventListener(
   "touchstart",
   (e) => {
     e.preventDefault();
-    tapHandler(e.touches[0].clientX, e.touches[0].clientY);
+    tapHandler((e.touches[0].clientX-canvas.getBoundingClientRect().left)*W/canvas.getBoundingClientRect().width, (e.touches[0].clientY-canvas.getBoundingClientRect().top)*H/canvas.getBoundingClientRect().height);
   },
   { passive: false }
 );
@@ -810,11 +811,7 @@ function buildLevel3() {
 }
 
 let levels = makeLevels();
-window.addEventListener("resize", () => {
-  setTimeout(() => {
-    levels = makeLevels();
-  }, 60);
-});
+// Pearly Arcade: fixed logical scene preserves obstacles through rotation.
 
 // -------------------- Collision --------------------
 function rr(ax, ay, aw, ah, bx, by, bw, bh) {
@@ -1279,7 +1276,7 @@ function drawGroundAndCeil() {
   // Glowing ground line — thicker with double glow
   ctx.save();
   ctx.shadowColor = `hsl(${hue}, 100%, 55%)`;
-  ctx.shadowBlur = 18;
+  ctx.shadowBlur = 7;
   ctx.strokeStyle = `hsl(${hue}, 90%, 52%)`;
   ctx.lineWidth = 3;
   ctx.beginPath();
@@ -1576,7 +1573,7 @@ function drawPlayer() {
     // Ship mode — improved with gradient
     ctx.save();
     ctx.shadowColor = "#00ffcc";
-    ctx.shadowBlur = 18;
+    ctx.shadowBlur = 7;
     const sg = ctx.createLinearGradient(-PS / 2, 0, PS / 2, 0);
     sg.addColorStop(0, "#009988");
     sg.addColorStop(1, "#00ffcc");
@@ -1930,7 +1927,7 @@ function drawMenu() {
     // Title with double glow
     ctx.save();
     ctx.shadowColor = "#00ff88";
-    ctx.shadowBlur = 45;
+    ctx.shadowBlur = 9;
     ctx.fillStyle = "#fff";
     ctx.font = `bold ${Math.min(68, W * 0.085)}px "Segoe UI", system-ui, sans-serif`;
     ctx.textAlign = "center";
@@ -1941,7 +1938,7 @@ function drawMenu() {
     ctx.fillStyle = "rgba(255,255,255,0.3)";
     ctx.font = `${Math.min(16, W * 0.02)}px "Segoe UI", system-ui, sans-serif`;
     ctx.textAlign = "center";
-    ctx.fillText("A browser-based tribute", W / 2, H * 0.2 + 36);
+    ctx.fillText("Adaptation amateur pour navigateur", W / 2, H * 0.2 + 36);
 
     // Decorative line
     const lineW = Math.min(240, W * 0.3);
@@ -1958,13 +1955,13 @@ function drawMenu() {
       bh = 58,
       bx = W / 2 - bw / 2;
     const items = [
-      { label: "\u25B6  Play", col: "#00ff88" },
+      { label: "\u25B6  Jouer", col: "#00ff88" },
       {
-        label: "Practice: " + (practiceMode ? "ON" : "OFF"),
+        label: "Entraînement : " + (practiceMode ? "ON" : "OFF"),
         col: practiceMode ? "#ffaa00" : "#555",
       },
       {
-        label: "Sound: " + (muted ? "OFF" : "ON"),
+        label: "Son du jeu : " + (muted ? "OFF" : "ON"),
         col: muted ? "#ff4444" : "#555",
       },
     ];
@@ -1974,7 +1971,7 @@ function drawMenu() {
       ctx.save();
       if (hov) {
         ctx.shadowColor = it.col;
-        ctx.shadowBlur = 18;
+        ctx.shadowBlur = 7;
       }
       // Button fill with gradient on hover
       if (hov) {
@@ -2003,7 +2000,7 @@ function drawMenu() {
     ctx.font = `${Math.min(13, W * 0.016)}px "Segoe UI", system-ui, sans-serif`;
     ctx.textAlign = "center";
     ctx.fillText(
-      "Space / Click to jump  \u00B7  P pause  \u00B7  Esc menu  \u00B7  M mute  \u00B7  F fullscreen",
+      "Espace / toucher : sauter  \u00B7  Échap : pause  \u00B7  F : agrandir",
       W / 2,
       H - 22
     );
@@ -2015,7 +2012,7 @@ function drawMenu() {
     ctx.fillStyle = "#fff";
     ctx.font = `bold ${Math.min(42, W * 0.055)}px "Segoe UI", system-ui, sans-serif`;
     ctx.textAlign = "center";
-    ctx.fillText("Select Level", W / 2, H * 0.11);
+    ctx.fillText("Choisis ton niveau", W / 2, H * 0.11);
     ctx.restore();
 
     const bw = Math.min(360, W * 0.5),
@@ -2029,7 +2026,7 @@ function drawMenu() {
       ctx.save();
       if (hov) {
         ctx.shadowColor = col;
-        ctx.shadowBlur = 18;
+        ctx.shadowBlur = 7;
       }
       if (hov) {
         const grd = ctx.createLinearGradient(bx, by, bx + bw, by);
@@ -2053,11 +2050,11 @@ function drawMenu() {
       ctx.fillText(lv.name, W / 2, by + 32);
 
       // Difficulty + best progress
-      const diff = ["Easy", "Medium", "Hard"][i];
+      const diff = ["Facile", "Moyen", "Difficile"][i];
       ctx.font = `${Math.min(14, W * 0.018)}px "Segoe UI", system-ui, sans-serif`;
       ctx.fillStyle = hov ? "rgba(0,0,0,0.55)" : "rgba(255,255,255,0.45)";
       ctx.fillText(
-        `${diff}  \u00B7  Best: ${best}%${best >= 100 ? " \u2605" : ""}`,
+        `${diff}  \u00B7  Record : ${best}%${best >= 100 ? " \u2605" : ""}`,
         W / 2,
         by + 56
       );
@@ -2241,9 +2238,12 @@ function frame() {
   inputJustDown = false;
 }
 
+// Pearly Arcade: simulation stays at 60Hz on 60/90/120Hz displays.
+let frameBudget=0;
 function loop(ts) {
-  lastFrame = ts;
-  frame();
+  const elapsed=lastFrame ? Math.max(0,Math.min(100,ts-lastFrame)) : FRAME_MS;
+  lastFrame=ts;frameBudget+=elapsed;
+  while(frameBudget+0.001>=FRAME_MS){frame();frameBudget-=FRAME_MS;}
   requestAnimationFrame(loop);
 }
 

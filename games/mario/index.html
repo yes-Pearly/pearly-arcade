@@ -1,7 +1,7 @@
 <!-- Pearly Arcade: mobile canvas scaling adjusted, 2026-11-12. Fan-made educational adaptation. -->
 <!DOCTYPE html>
 <html lang="ko">
-<head><meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'">
+<head><script src="../../game-kit.js?v=6" data-game="mario"></script><meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'">
 <meta charset="utf-8">
 <title>Super Mario 1-1</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,9 +12,9 @@
   #help{position:fixed;bottom:8px;left:0;right:0;text-align:center;font-size:12px;color:#aaa;user-select:none}
   #touch{position:fixed;inset:0;display:none;pointer-events:none}
   .tb{position:absolute;bottom:18px;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.4);pointer-events:auto;touch-action:none;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
-  @media (pointer:coarse),(max-width:900px){#touch{display:block}#help{display:none}}
-@media(pointer:coarse),(max-width:900px){#wrap{bottom:90px}.tb{bottom:max(12px,env(safe-area-inset-bottom));width:58px;height:58px;background:#25304ecc;border-color:#fff9}#touch{touch-action:none}}@media(orientation:landscape){#wrap{bottom:0}}.tb[data-k="run"],.tb[data-k="jump"]{font-size:13px;font-family:system-ui;font-weight:600}</style>
-</head>
+  @media (pointer:coarse),(max-width:1100px){#touch{display:block}#help{display:none}}
+@media(pointer:coarse),(max-width:1100px){#wrap{bottom:90px}.tb{bottom:max(12px,env(safe-area-inset-bottom));width:58px;height:58px;background:#25304ecc;border-color:#fff9}#touch{touch-action:none}}@media(orientation:landscape){#wrap{bottom:0}}.tb[data-k="run"],.tb[data-k="jump"]{font-size:13px;font-family:system-ui;font-weight:600}</style>
+<link rel="stylesheet" href="../../game-kit.css?v=6"><style>:root{--accent:#acc5ff}</style></head>
 <body>
 <div id="wrap"><canvas id="c" width="256" height="240"></canvas></div>
 <div id="help">Flèches : bouger · Z / Maj : courir · X / Espace : sauter · Entrée : commencer/pause · M : son</div>
@@ -35,7 +35,7 @@ const ctx = cv.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
 function fitCanvas() {
-  const s = Math.min(window.innerWidth / W, (window.innerHeight - (matchMedia("(pointer:coarse),(max-width:900px)").matches && window.innerHeight > window.innerWidth ? 104 : 8)) / H);
+  const s = Math.min(window.innerWidth / W, (window.innerHeight - (matchMedia("(pointer:coarse),(max-width:1100px)").matches ? 104 : 8)) / H);
   cv.style.width = (W * s) + 'px';
   cv.style.height = (H * s) + 'px';
 }
@@ -69,12 +69,12 @@ window.addEventListener('blur', () => { for (const k in keys) keys[k] = false; }
 // touch buttons
 for (const el of document.querySelectorAll('.tb')) {
   const k = el.dataset.k;
-  const on = e => { e.preventDefault(); if (!keys[k] && (k === 'jump' || k === 'run')) pressed[k] = true; keys[k] = true; Audio.unlock(); pressed.start = pressed.start || !Game.running; };
+  const on = e => { e.preventDefault(); el.setPointerCapture(e.pointerId); if (!keys[k] && (k === 'jump' || k === 'run')) pressed[k] = true; keys[k] = true; Audio.unlock(); pressed.start = pressed.start || !Game.running; };
   const off = e => { e.preventDefault(); keys[k] = false; };
   el.addEventListener('pointerdown', on); el.addEventListener('pointerup', off);
-  el.addEventListener('pointercancel', off); el.addEventListener('pointerleave', off);
+  el.addEventListener('pointercancel', off); el.addEventListener('lostpointercapture', off);
 }
-cv.addEventListener('pointerdown', () => { Audio.unlock(); pressed.start = true; });
+cv.addEventListener('pointerdown', () => { Audio.unlock(); if(Game.state === 'title' || !Game.running) pressed.start = true; });
 
 // ---------------- Audio (tiny synth) ----------------
 const Audio = (() => {

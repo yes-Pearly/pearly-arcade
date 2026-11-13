@@ -19,7 +19,7 @@ function render(){
   const card=document.createElement('article');card.className='game-card';
   const a=document.createElement('a');a.href=linkFor(g);a.className='card-link';
   const picture=photo(g);const overlay=document.createElement('span');overlay.className='photo-action';overlay.innerHTML=arrow;picture.appendChild(overlay);
-  const badge=document.createElement('span');badge.className='photo-label';badge.textContent=isFilm?g.duration:(g.adaptation?'Adaptation amateur':'');if(badge.textContent)picture.appendChild(badge);
+  const badge=document.createElement('span');badge.className='photo-label';badge.textContent=isFilm?g.duration:(g.external?'Hébergé ailleurs':g.adaptation?'Adaptation amateur':'');if(badge.textContent)picture.appendChild(badge);
   const body=document.createElement('div');body.className='card-copy';
   const title=document.createElement('h3');title.textContent=g.title;
   const meta=document.createElement('p');meta.textContent=isFilm?g.tag:g.tag+' · Tactile';
@@ -38,10 +38,10 @@ function feature(main,side){
 }
 search.addEventListener('input',render);document.getElementById('reset').onclick=()=>{search.value='';choose('Tout');search.focus();};
 document.querySelector('[data-nav="'+view+'"]').setAttribute('aria-current','page');
-fetch((isFilm?'films.json':'games.json')+'?v=3').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{
+fetch((isFilm?'films.json':'games.json')+'?v=6').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{
  items=data;
  document.getElementById('total-count').textContent=items.length;
  if(isFilm){document.getElementById('page-kicker').textContent='LE PLAISIR DE REGARDER';document.getElementById('page-title').innerHTML='Installe-toi.<br>Le film commence.';document.getElementById('page-intro').innerHTML='Des courts-métrages libres à découvrir.<br>Le cinéma, sans abonnement.';document.getElementById('catalogue-kicker').textContent='UN AUTRE REGARD';document.getElementById('catalogue-title').firstChild.textContent='Les courts-métrages ';search.placeholder='Rechercher un film…';document.getElementById('bottom-note').innerHTML='<strong>Du cinéma à partager librement.</strong><span>Films complets sous licence Creative Commons. Lecture en ligne, dans la langue indiquée.</span>';feature(items[0],items.slice(1,3));}
- else{feature(items.find(g=>g.id==='callisto')||items[0],[items.find(g=>g.id==='mini-golf'),items.find(g=>g.id==='dash')].filter(Boolean));try{const last=items.find(g=>g.id===localStorage.getItem('pearly-last'));if(last){const a=document.getElementById('resume');a.textContent='Ta dernière partie : '+last.title+' — Reprendre →';a.href=linkFor(last);a.hidden=false;}}catch(_){}}
+ else{feature(items.find(g=>g.id==='drive-mad')||items[0],[items.find(g=>g.id==='mini-golf'),items.find(g=>g.id==='dash')].filter(Boolean));try{const last=items.find(g=>g.id===localStorage.getItem('pearly-last'));if(last){const a=document.getElementById('resume');a.textContent='Ta dernière partie : '+last.title+' — Reprendre →';a.href=linkFor(last);a.hidden=false;}}catch(_){}}
  const values=isFilm?['Tout']:['Tout','Mes favoris',...new Set(items.map(g=>g.tag))];for(const value of values){const b=document.createElement('button');b.textContent=value;b.className='filter';b.setAttribute('aria-pressed',String(value===category));b.onclick=()=>choose(value);filterRow.appendChild(b);}render();
 }).catch(()=>{document.getElementById('result-count').textContent='Le catalogue n’a pas pu être chargé. Recharge la page pour réessayer.';});
