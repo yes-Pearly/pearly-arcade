@@ -8,7 +8,9 @@
 
 - 24 jeux MIT de [mashukui/web-games](https://github.com/mashukui/web-games) : mini-golf, basket, Cross Road, Helix Drop, Fruit Slice, Star Defender, Bubble Shooter, Snake, Block Drop, Breakout, Paddle Duel, Ant Flap, Ant Jump, Water Sort, Gem Match, Air Hockey, bowling, tirs au but, Puissance 4, bataille navale, Sokoban, Sudoku, Mahjong Link et Nonogram.
 - Les 7 jeux déjà présents : Mario World 1-1 (amateur), Geometry Dash (fan), Captain Callisto, Hextris, Tower Building, 2048 et Dino.
-- Vraies captures de chaque jeu, optimisées en JPEG ; grille adaptée au portrait et au paysage, recherche, catégories et favoris locaux.
+- 32 nouvelles captures réelles, cadrées sur l’action ou le plateau ; images plus grandes, description sous chaque titre et grille de 3 colonnes sur iPad paysage / 2 en portrait. Recherche, catégories et favoris locaux.
+- Détection du tactile, du clavier et de la taille disponible. Touches de déplacement de 92 px sur tablette, boutons d’action de 106 px, joystick avec diagonales et doigts indépendants. Les dispositions téléphone réservent une zone sous le jeu ou utilisent les côtés en paysage.
+- Aide → Commandes adaptées : disposition automatique ou manuelle et choix « Très grandes », mémorisés sur l’appareil. Les commandes natives de Drive Mad sont agrandies par la mise à l’échelle du lecteur distant.
 - Lecteur adapté aux écrans tactiles. Agrandir dispose d’un repli CSS pour iOS. Le moteur de Tower conserve son viewport lors d’une rotation.
 - Jeux existants intégrés avec les adaptations documentées dans CHANGES-THIRD-PARTY.md, sans réécriture de leurs règles.
 - Manifest pour l’ajout à l’écran d’accueil. Connexion nécessaire au chargement.
@@ -36,6 +38,8 @@ Drive Mad conserve son menu de pause et ses réglages audio. Le lecteur ne prét
 ### Vérifications
 
 Les 31 jeux locaux ont été lancés dans l’aperçu aux dimensions iPad (1024×768 et 768×1024), puis les cadrages problématiques ont été repris. Pause/reprise, commandes tactiles représentatives et le vrai Drive Mad sont vérifiés dans le navigateur. Ces contrôles ne remplacent pas un essai sur un iPad physique.
+
+`node tests/controls.cjs` vérifie les profils tablette/téléphone/clavier, les diagonales et le relâchement indépendant des doigts.
 
 `node tests/runtime.cjs` vérifie la suspension et la reprise des horloges/temporisations, ainsi que le nombre de pas de la boucle réelle de Geometry Dash à 60 et 120 Hz.
 

@@ -34,3 +34,12 @@ Les nouveaux fichiers de portail et touch-controls.js sont sous licence MIT. Cha
 - Captain Callisto : instructions et police reprises, diagramme clavier retiré sur tablette, entrée directe dans le premier niveau après les instructions du portail. Source du hook conservée dans src/pearly-entry.js.
 - Tower : écrans HTML de départ et de résultat repris en français, actions WeChat inadaptées retirées, lancement intégré après le chargement.
 - Drive Mad : seule intégration distante, à l’URL fournie par l’utilisateur. Aucun code ou fichier WASM/data du jeu n’est ajouté. Ses commandes internes de pause et de son sont conservées. Capture réelle et attribution Martin Magni/Fancade.
+
+
+## Commandes et aperçus — 13 novembre 2026
+
+- Couche commune input-profile.js et touch-controls.css : tailles calculées selon le tactile réel et l’espace disponible, réglages mémorisés par le portail et transmis uniquement aux jeux locaux de même origine. Touches masquées au clavier.
+- Callisto : joystick à diagonales, actions indépendantes avec capture des pointeurs, relâchement à la pause et zone de jeu réservée. Redimensionnement modifié dans le bundle et src/lib/lib.js ; règles inchangées.
+- Mario, Cross Road, Block Drop, Sokoban et Snake : grandes commandes tactiles et espace de jeu ajusté ; aucune modification des règles. Les boutons des jeux de réflexion sont également agrandis.
+- Drive Mad : mise à l’échelle de l’iframe pour agrandir ses commandes natives sur tactile ; aucune injection dans son moteur et aucun fichier copié.
+- 32 nouvelles captures de parties ou de plateaux, recadrage propre à chaque jeu, grille plus aérée et description visible sous les images.

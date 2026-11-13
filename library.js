@@ -6,9 +6,9 @@ const arrow='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 9 7-9 7Z"
 const cards=document.getElementById('cards'),search=document.getElementById('search'),filterRow=document.getElementById('filters');
 let items=[],category='Tout',favorites=[];
 try{favorites=JSON.parse(localStorage.getItem('pearly-favorites')||'[]');if(!Array.isArray(favorites))favorites=[];}catch(_){}
-const linkFor=g=>isFilm?'watch.html?film='+g.id:'play.html?game='+g.id;
+const linkFor=g=>isFilm?'watch.html?film='+g.id:'play.html?game='+g.id+'&v=9';
 const photoFor=g=>isFilm?g.poster:g.thumb;
-function photo(g,large=false){const box=document.createElement('div');box.className='photo';box.style.setProperty('--photo','url("'+photoFor(g)+'")');const img=new Image();img.src=photoFor(g);img.alt=(isFilm?'Image du film ':'Capture du jeu ')+g.title;img.loading=large?'eager':'lazy';img.decoding='async';box.appendChild(img);return box;}
+function photo(g,large=false){const box=document.createElement('div');box.className='photo';if(!isFilm){box.dataset.framing=g.thumbFit||'contain';box.style.setProperty('--focal',g.thumbPosition||'50% 50%');}box.style.setProperty('--photo','url("'+photoFor(g)+'")');const img=new Image();img.src=photoFor(g);img.alt=(isFilm?'Image du film ':'Capture du jeu ')+g.title+(isFilm?'':' : '+g.desc);img.loading=large?'eager':'lazy';img.decoding='async';box.appendChild(img);return box;}
 function choose(value){category=value;for(const b of filterRow.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.textContent===value));render();}
 function render(){
  cards.replaceChildren();const q=normal(search.value.trim());
@@ -22,7 +22,7 @@ function render(){
   const badge=document.createElement('span');badge.className='photo-label';badge.textContent=isFilm?g.duration:(g.external?'Hébergé ailleurs':g.adaptation?'Adaptation amateur':'');if(badge.textContent)picture.appendChild(badge);
   const body=document.createElement('div');body.className='card-copy';
   const title=document.createElement('h3');title.textContent=g.title;
-  const meta=document.createElement('p');meta.textContent=isFilm?g.tag:g.tag+' · Tactile';
+  const meta=document.createElement('p');meta.className=isFilm?'':'card-purpose';meta.textContent=isFilm?g.tag:g.desc;
   body.append(title,meta);a.append(picture,body);card.appendChild(a);
   if(!isFilm){const f=document.createElement('button');f.className='favorite';f.innerHTML=heart;f.setAttribute('aria-label',(favorites.includes(g.id)?'Retirer des favoris : ':'Ajouter aux favoris : ')+g.title);f.setAttribute('aria-pressed',String(favorites.includes(g.id)));f.onclick=()=>{favorites=favorites.includes(g.id)?favorites.filter(x=>x!==g.id):[...favorites,g.id];try{localStorage.setItem('pearly-favorites',JSON.stringify(favorites));}catch(_){}render();};card.appendChild(f);}
   cards.appendChild(card);
@@ -38,7 +38,7 @@ function feature(main,side){
 }
 search.addEventListener('input',render);document.getElementById('reset').onclick=()=>{search.value='';choose('Tout');search.focus();};
 document.querySelector('[data-nav="'+view+'"]').setAttribute('aria-current','page');
-fetch((isFilm?'films.json':'games.json')+'?v=6').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{
+fetch((isFilm?'films.json':'games.json')+'?v=9').then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{
  items=data;
  document.getElementById('total-count').textContent=items.length;
  if(isFilm){document.getElementById('page-kicker').textContent='LE PLAISIR DE REGARDER';document.getElementById('page-title').innerHTML='Installe-toi.<br>Le film commence.';document.getElementById('page-intro').innerHTML='Des courts-métrages libres à découvrir.<br>Le cinéma, sans abonnement.';document.getElementById('catalogue-kicker').textContent='UN AUTRE REGARD';document.getElementById('catalogue-title').firstChild.textContent='Les courts-métrages ';search.placeholder='Rechercher un film…';document.getElementById('bottom-note').innerHTML='<strong>Du cinéma à partager librement.</strong><span>Films complets sous licence Creative Commons. Lecture en ligne, dans la langue indiquée.</span>';feature(items[0],items.slice(1,3));}

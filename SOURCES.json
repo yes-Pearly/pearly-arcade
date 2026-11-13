@@ -153,5 +153,13 @@
     "external_games": 1,
     "changes": "CHANGES-THIRD-PARTY.md",
     "screenshots": "Captures réelles dans le lecteur et les jeux"
+  },
+  "integration_v9": {
+    "date": "2026-11-13",
+    "local_games": 31,
+    "external_games": 1,
+    "changes": "CHANGES-THIRD-PARTY.md",
+    "screenshots": "32 captures réelles renouvelées, cadrage individuel",
+    "controls": "Profils tactiles selon appareil et espace, joystick Callisto, commandes natives agrandies, réglages locaux"
   }
 }

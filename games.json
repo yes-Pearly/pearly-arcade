@@ -14,7 +14,10 @@
     "controls": "external",
     "path": "https://ducky443747.github.io/games/DriveMad/",
     "external": true,
-    "thumb": "assets/screens/drive-mad.jpg?v=6"
+    "thumb": "assets/screens/drive-mad.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 50%",
+    "keyboardHint": "Maintiens la flèche droite pour accélérer, la gauche pour reculer. Pause et son se règlent dans le menu du jeu."
   },
   {
     "id": "mini-golf",
@@ -31,7 +34,9 @@
     "controls": "native",
     "path": "games/mini-golf/",
     "collection": "web-games",
-    "thumb": "assets/screens/mini-golf.jpg?v=6"
+    "thumb": "assets/screens/mini-golf.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 84%"
   },
   {
     "id": "hoop-shot",
@@ -48,7 +53,9 @@
     "controls": "native",
     "path": "games/hoop-shot/",
     "collection": "web-games",
-    "thumb": "assets/screens/hoop-shot.jpg?v=6"
+    "thumb": "assets/screens/hoop-shot.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "dash",
@@ -64,7 +71,9 @@
     "hint": "Choisis Play, puis un niveau. Touche l’écran pour sauter ou maintiens pour voler. Adaptation libre : ce jeu n’est pas le Geometry Dash officiel de RobTop.",
     "controls": "native",
     "path": "games/dash/",
-    "thumb": "assets/screens/dash.jpg?v=6"
+    "thumb": "assets/screens/dash.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "mario",
@@ -80,7 +89,10 @@
     "hint": "Touche le jeu pour commencer. Les boutons à l’écran permettent de courir et de sauter. Adaptation amateur : ce jeu n’est pas une version officielle Nintendo.",
     "controls": "native",
     "path": "games/mario/",
-    "thumb": "assets/screens/mario.jpg?v=6"
+    "thumb": "assets/screens/mario.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 80%",
+    "keyboardHint": "Flèches gauche/droite pour te déplacer, Z ou Maj pour courir, X ou Espace pour sauter."
   },
   {
     "id": "cross-road",
@@ -97,7 +109,10 @@
     "controls": "native",
     "path": "games/cross-road/",
     "collection": "web-games",
-    "thumb": "assets/screens/cross-road.jpg?v=6"
+    "thumb": "assets/screens/cross-road.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 50%",
+    "keyboardHint": "Flèches ou WASD pour avancer et changer de direction. Évite les voitures et utilise les troncs pour traverser."
   },
   {
     "id": "callisto",
@@ -110,10 +125,13 @@
     "licensePath": "LICENSE",
     "adaptation": false,
     "orientation": "landscape",
-    "hint": "Déplace-toi avec la croix, saute avec Saut et maintiens Jet pour le jetpack. Collecte les trésors puis rejoins le transporteur. Idéal en paysage.",
+    "hint": "Dirige le joystick pour te déplacer, touche Saut pour sauter et maintiens Jet pour le jetpack. Les deux mains peuvent agir en même temps. Collecte les trésors puis rejoins le transporteur.",
     "controls": "pad",
     "path": "games/callisto/",
-    "thumb": "assets/screens/callisto.jpg?v=6"
+    "thumb": "assets/screens/callisto.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 50%",
+    "keyboardHint": "Flèches ou WASD pour te déplacer, Espace pour sauter et Maj pour le jetpack. Collecte les trésors puis rejoins le transporteur."
   },
   {
     "id": "helix-drop",
@@ -130,7 +148,9 @@
     "controls": "native",
     "path": "games/helix-drop/",
     "collection": "web-games",
-    "thumb": "assets/screens/helix-drop.jpg?v=6"
+    "thumb": "assets/screens/helix-drop.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "fruit-slice",
@@ -147,7 +167,9 @@
     "controls": "native",
     "path": "games/fruit-slice/",
     "collection": "web-games",
-    "thumb": "assets/screens/fruit-slice.jpg?v=6"
+    "thumb": "assets/screens/fruit-slice.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 55%"
   },
   {
     "id": "hextris",
@@ -163,7 +185,10 @@
     "hint": "Touche la moitié gauche ou droite du jeu pour tourner l’hexagone. Aligne au moins trois blocs de même couleur. Les scores restent dans le navigateur.",
     "controls": "native",
     "path": "games/hextris/",
-    "thumb": "assets/screens/hextris.jpg?v=6"
+    "thumb": "assets/screens/hextris.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%",
+    "keyboardHint": "Flèches gauche/droite pour tourner l’hexagone. Aligne au moins trois blocs de même couleur."
   },
   {
     "id": "tower",
@@ -179,7 +204,10 @@
     "hint": "Touche la zone de jeu pour lâcher chaque étage. Aligne les blocs pour construire la tour la plus haute possible.",
     "controls": "native",
     "path": "games/tower/",
-    "thumb": "assets/screens/tower.jpg?v=6"
+    "thumb": "assets/screens/tower.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%",
+    "keyboardHint": "Clique dans la zone de jeu pour lâcher chaque étage. Aligne les blocs pour construire la tour la plus haute possible."
   },
   {
     "id": "2048",
@@ -195,7 +223,9 @@
     "hint": "Fais glisser les tuiles dans les quatre directions. Au clavier : utilise les flèches. Deux nombres identiques fusionnent.",
     "controls": "native",
     "path": "games/2048/",
-    "thumb": "assets/screens/2048.jpg?v=6"
+    "thumb": "assets/screens/2048.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "dino",
@@ -211,7 +241,10 @@
     "hint": "Touche le jeu pour sauter. Au clavier : Espace ou ↑ ; ↓ pour se baisser.",
     "controls": "native",
     "path": "games/dino/",
-    "thumb": "assets/screens/dino.jpg?v=6"
+    "thumb": "assets/screens/dino.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "0% 50%",
+    "keyboardHint": "Espace ou flèche haut pour sauter ; flèche bas pour te baisser."
   },
   {
     "id": "star-defender",
@@ -228,7 +261,9 @@
     "controls": "native",
     "path": "games/star-defender/",
     "collection": "web-games",
-    "thumb": "assets/screens/star-defender.jpg?v=6"
+    "thumb": "assets/screens/star-defender.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "bubble-shooter",
@@ -245,7 +280,9 @@
     "controls": "native",
     "path": "games/bubble-shooter/",
     "collection": "web-games",
-    "thumb": "assets/screens/bubble-shooter.jpg?v=6"
+    "thumb": "assets/screens/bubble-shooter.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "snake",
@@ -262,7 +299,10 @@
     "controls": "native",
     "path": "games/snake/",
     "collection": "web-games",
-    "thumb": "assets/screens/snake.jpg?v=6"
+    "thumb": "assets/screens/snake.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%",
+    "keyboardHint": "Flèches ou WASD pour changer de direction. Mange les pommes et évite les murs."
   },
   {
     "id": "block-drop",
@@ -279,7 +319,10 @@
     "controls": "native",
     "path": "games/block-drop/",
     "collection": "web-games",
-    "thumb": "assets/screens/block-drop.jpg?v=6"
+    "thumb": "assets/screens/block-drop.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%",
+    "keyboardHint": "Flèches pour déplacer les blocs, flèche haut pour tourner et Espace pour lâcher rapidement."
   },
   {
     "id": "breakout",
@@ -296,7 +339,9 @@
     "controls": "native",
     "path": "games/breakout/",
     "collection": "web-games",
-    "thumb": "assets/screens/breakout.jpg?v=6"
+    "thumb": "assets/screens/breakout.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "paddle-duel",
@@ -313,7 +358,9 @@
     "controls": "native",
     "path": "games/paddle-duel/",
     "collection": "web-games",
-    "thumb": "assets/screens/paddle-duel.jpg?v=6"
+    "thumb": "assets/screens/paddle-duel.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "ant-flap",
@@ -330,7 +377,9 @@
     "controls": "native",
     "path": "games/ant-flap/",
     "collection": "web-games",
-    "thumb": "assets/screens/ant-flap.jpg?v=6"
+    "thumb": "assets/screens/ant-flap.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 55%"
   },
   {
     "id": "ant-jump",
@@ -347,7 +396,9 @@
     "controls": "native",
     "path": "games/ant-jump/",
     "collection": "web-games",
-    "thumb": "assets/screens/ant-jump.jpg?v=6"
+    "thumb": "assets/screens/ant-jump.jpg?v=9",
+    "thumbFit": "cover",
+    "thumbPosition": "50% 55%"
   },
   {
     "id": "water-sort",
@@ -364,7 +415,9 @@
     "controls": "native",
     "path": "games/water-sort/",
     "collection": "web-games",
-    "thumb": "assets/screens/water-sort.jpg?v=6"
+    "thumb": "assets/screens/water-sort.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "gem-match",
@@ -381,7 +434,9 @@
     "controls": "native",
     "path": "games/gem-match/",
     "collection": "web-games",
-    "thumb": "assets/screens/gem-match.jpg?v=6"
+    "thumb": "assets/screens/gem-match.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "air-hockey",
@@ -398,7 +453,9 @@
     "controls": "native",
     "path": "games/air-hockey/",
     "collection": "web-games",
-    "thumb": "assets/screens/air-hockey.jpg?v=6"
+    "thumb": "assets/screens/air-hockey.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "bowling",
@@ -415,7 +472,9 @@
     "controls": "native",
     "path": "games/bowling/",
     "collection": "web-games",
-    "thumb": "assets/screens/bowling.jpg?v=6"
+    "thumb": "assets/screens/bowling.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "penalty-kick",
@@ -432,7 +491,9 @@
     "controls": "native",
     "path": "games/penalty-kick/",
     "collection": "web-games",
-    "thumb": "assets/screens/penalty-kick.jpg?v=6"
+    "thumb": "assets/screens/penalty-kick.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "connect-four",
@@ -449,7 +510,9 @@
     "controls": "native",
     "path": "games/connect-four/",
     "collection": "web-games",
-    "thumb": "assets/screens/connect-four.jpg?v=6"
+    "thumb": "assets/screens/connect-four.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "battleship",
@@ -466,7 +529,9 @@
     "controls": "native",
     "path": "games/battleship/",
     "collection": "web-games",
-    "thumb": "assets/screens/battleship.jpg?v=6"
+    "thumb": "assets/screens/battleship.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "sokoban",
@@ -483,7 +548,9 @@
     "controls": "native",
     "path": "games/sokoban/",
     "collection": "web-games",
-    "thumb": "assets/screens/sokoban.jpg?v=6"
+    "thumb": "assets/screens/sokoban.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "sudoku",
@@ -500,7 +567,9 @@
     "controls": "native",
     "path": "games/sudoku/",
     "collection": "web-games",
-    "thumb": "assets/screens/sudoku.jpg?v=6"
+    "thumb": "assets/screens/sudoku.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "mahjong-link",
@@ -517,7 +586,9 @@
     "controls": "native",
     "path": "games/mahjong-link/",
     "collection": "web-games",
-    "thumb": "assets/screens/mahjong-link.jpg?v=6"
+    "thumb": "assets/screens/mahjong-link.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   },
   {
     "id": "nonogram",
@@ -534,6 +605,8 @@
     "controls": "native",
     "path": "games/nonogram/",
     "collection": "web-games",
-    "thumb": "assets/screens/nonogram.jpg?v=6"
+    "thumb": "assets/screens/nonogram.jpg?v=9",
+    "thumbFit": "contain",
+    "thumbPosition": "50% 50%"
   }
 ]

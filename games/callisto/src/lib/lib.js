@@ -173,11 +173,16 @@ handleResizeEvent();
  * then draws the new borders accordingly.
  */
 function handleResizeEvent() {
-  const scale = Math.min(window.innerWidth / WIDTH, window.innerHeight / HEIGHT);
+  const input=window.PearlyInput?.profile;
+  const sideControls=input?.input==='touch'&&input.compact;
+  const playWidth=sideControls?Math.max(140,innerWidth-input.stick-input.action*2-input.gap-72):innerWidth;
+  const reserve=input?.dock||0;
+  const playHeight=Math.max(80,window.innerHeight-reserve);
+  const scale = Math.min(playWidth / WIDTH, playHeight / HEIGHT);
   const width = scale * WIDTH;
   const height = scale * HEIGHT;
-  const x = (window.innerWidth - width) / 2;
-  const y = (window.innerHeight - height) / 2;
+  const x = (sideControls?input.stick+36:0)+(playWidth-width)/2;
+  const y = (playHeight - height) / 2;
 
   if (canvas) {
     canvas.width = WIDTH;

@@ -1,0 +1,8 @@
+const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),assert=require('node:assert/strict');
+const context={window:{}};vm.createContext(context);vm.runInContext(fs.readFileSync(path.resolve(__dirname,'../input-profile.js'),'utf8'),context);const input=context.window.PearlyInput;
+const tablet=input.compute({width:1024,height:768,touch:true});assert.equal(tablet.device,'tablet');assert.equal(tablet.input,'touch');assert(tablet.button>=90);assert(tablet.action>=100);
+const desktop=input.compute({width:768,height:1024,touch:false});assert.equal(desktop.input,'keyboard');assert.equal(input.compute({width:390,height:844,touch:true}).device,'phone');assert(input.compute({width:1024,height:768,touch:true,size:'xl'}).button>tablet.button);
+assert.equal(input.compute({width:844,height:300,touch:true}).dock,0);assert.equal(input.compute({width:390,height:740,touch:true,layout:'keyboard'}).input,'keyboard');
+assert.equal(JSON.stringify(input.directions(.8,-.8)),'["right","up"]');assert.equal(JSON.stringify(input.directions(.1,.1)),'[]');
+const events=[],keys=input.keyState((key,type)=>events.push(key+':'+type));keys.set(1,['up']);keys.set(2,['jump']);keys.set(1,['up','right']);keys.release(1);assert.equal(events.join(','),'up:keydown,jump:keydown,right:keydown,up:keyup,right:keyup');keys.clear();assert.equal(events.at(-1),'jump:keyup');
+events.length=0;keys.set(1,['jump']);keys.set(2,['jump']);keys.release(1);assert.equal(events.length,1);keys.release(2);assert.equal(events.join(','),'jump:keydown,jump:keyup');console.log('OK: profils appareil, grandes touches, diagonales, doigts indépendants, relâchement.');
